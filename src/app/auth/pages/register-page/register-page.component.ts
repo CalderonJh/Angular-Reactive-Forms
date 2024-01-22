@@ -1,10 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators as v,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators as v } from '@angular/forms';
 import { ValidatorService } from '../../../shared/services/validator.service';
 
 type formControlName =
