@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators as v } from '@angular/forms';
 import { ValidatorService } from '../../../shared/services/validator.service';
+import { EmailValidatorService } from '../../../shared/services/email-validator.service';
 
 type formControlName =
   | 'name'
@@ -16,15 +17,11 @@ type formControlName =
 })
 export class RegisterPageComponent {
   public formGroup: FormGroup = this.formBuilder.group({
-    name: [
-      '',
-      [v.required, v.pattern(this.validatorService.fullNamePattern)],
-      [],
-    ],
+    name: ['', [v.required, v.pattern(this.validatorService.fullNamePattern)]],
     email: [
       '',
       [v.required, v.pattern(this.validatorService.emailPattern)],
-      [],
+      [new EmailValidatorService()],
     ],
     username: [
       '',
@@ -33,10 +30,9 @@ export class RegisterPageComponent {
         this.validatorService.isAvailableUsername.bind(this.validatorService),
         this.validatorService.hasNoSpaces.bind(this.validatorService),
       ],
-      [],
     ],
-    password: ['', [v.required, v.minLength(8)], []],
-    confirmPassword: ['', [v.required], []],
+    password: ['', [v.required, v.minLength(8)]],
+    confirmPassword: ['', [v.required]],
   });
 
   constructor(
