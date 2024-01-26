@@ -15,7 +15,7 @@ export class EmailValidatorService implements AsyncValidator {
     const email = control.value;
 
     return new Observable<ValidationErrors | null>((subscriber) => {
-      if (email == 'example@correo.com') {
+      if (email == 'example@email.com') {
         subscriber.next({
           emailTaken: {
             message: 'This email is already in use',
